@@ -711,7 +711,8 @@ export default function QuickView() {
         </div>
 
         {/* Right Panel — Details */}
-        <div className="flex flex-col p-6 sm:p-8 overflow-y-auto">
+        <div className="flex flex-col p-6 sm:p-8">
+
           {/* Eyebrow */}
           <p
             className="uppercase font-medium mb-1.5"
