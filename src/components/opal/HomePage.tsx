@@ -1,8 +1,9 @@
 "use client";
-
-import { useAppStore } from "@/lib/store";
-import { OutfitItem, AccessoryItem, ContentType } from "@/lib/types";
+import React from "react";
+import { useAppStore } from "../../lib/store";
+import { OutfitItem, AccessoryItem, ContentType } from "../../lib/types";
 import { ArrowRight } from "lucide-react";
+
 
 export default function HomePage() {
   const { outfits, accessories, setCurrentPage, setQvItem, siteSettings } = useAppStore();
@@ -17,7 +18,7 @@ export default function HomePage() {
   const heroImages = [...outfits.slice(0, 2), ...accessories.slice(0, 1)];
 
   const openItem = (item: OutfitItem | AccessoryItem, type: ContentType) => {
-    setQvItem({ ...item, _type: type });
+    setQvItem({ ...item, _type: type as ContentType });
   };
 
   return (
@@ -397,7 +398,7 @@ export default function HomePage() {
             className="px-6 py-3 text-[0.72rem] tracking-[0.1em] uppercase text-white rounded-full transition-all hover:-translate-y-0.5"
             style={{ background: "var(--rose)" }}
           >
-            Follow on Pinterest ->
+            Follow on Pinterest -
           </a>
         </div>
       </section>
