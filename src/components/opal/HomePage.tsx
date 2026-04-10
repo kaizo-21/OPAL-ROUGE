@@ -152,7 +152,7 @@ export default function HomePage() {
                           color: "var(--rose)",
                         }}
                       >
-                        ♦
+                        *
                       </div>
                     )}
                     <div className="absolute inset-0 card-overlay opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-3">
@@ -168,7 +168,7 @@ export default function HomePage() {
                 className="col-span-2 rounded-xl flex items-center justify-center text-2xl font-serif italic"
                 style={{ background: "var(--cream)", color: "var(--rose)" }}
               >
-                ✦ Curated Finds ✦
+                * Curated Finds *
               </div>
             )}
           </div>
@@ -198,7 +198,7 @@ export default function HomePage() {
               className="text-center py-16 font-serif italic text-[0.9rem]"
               style={{ color: "var(--light-muted)" }}
             >
-              ✦ Add outfit posts in Admin to show here ✦
+              * Add outfit posts in Admin to show here *
             </div>
           ) : (
             <div className="masonry-grid">
@@ -223,7 +223,7 @@ export default function HomePage() {
                         color: "var(--rose)",
                       }}
                     >
-                      {item.title?.[0] || "✦"}
+                      {item.title?.[0] || "*"}
                     </div>
                   )}
                   <div className="absolute inset-0 card-overlay opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
@@ -313,7 +313,7 @@ export default function HomePage() {
                           color: "var(--rose)",
                         }}
                       >
-                        {item.title?.[0] || "✦"}
+                        {item.title?.[0] || "*"}
                       </div>
                     )}
                     {item.badge && (
@@ -397,7 +397,7 @@ export default function HomePage() {
             className="px-6 py-3 text-[0.72rem] tracking-[0.1em] uppercase text-white rounded-full transition-all hover:-translate-y-0.5"
             style={{ background: "var(--rose)" }}
           >
-            Follow on Pinterest ↗
+            Follow on Pinterest ->
           </a>
         </div>
       </section>
