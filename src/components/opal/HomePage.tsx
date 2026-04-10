@@ -2,7 +2,7 @@
 
 import { useAppStore } from "@/lib/store";
 import { OutfitItem, AccessoryItem, ContentType } from "@/lib/types";
-import { Heart, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function HomePage() {
   const { outfits, accessories, setCurrentPage, setQvItem, siteSettings } = useAppStore();
@@ -100,7 +100,7 @@ export default function HomePage() {
               <>
                 <div
                   className="col-span-2 rounded-xl overflow-hidden card-hover cursor-pointer relative group aspect-video"
-                  onClick={() => openItem(heroImages[0], "outfits")}
+                  onClick={() => heroImages[0] && openItem(heroImages[0], "outfits")}
                 >
                   {heroImages[0]?.img ? (
                     <img
@@ -131,7 +131,7 @@ export default function HomePage() {
                     key={i}
                     className="rounded-xl overflow-hidden card-hover cursor-pointer relative group aspect-[3/4]"
                     onClick={() =>
-                      openItem(
+                      item && openItem(
                         item,
                         i === 0 ? "outfits" : "accessories"
                       )
