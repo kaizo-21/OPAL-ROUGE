@@ -216,19 +216,24 @@ export default function QuickView() {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          maxWidth: "950px",
+          maxWidth: "1000px",
           width: "calc(100% - 2rem)",
-          maxHeight: "90vh",
+          maxHeight: "85vh",
           display: "grid",
-          gridTemplateColumns: "1fr 1.1fr",
+          gridTemplateColumns: "minmax(400px, 1fr) 1.2fr",
         }}
+
         role="dialog"
         aria-modal="true"
         aria-label={qvItem.title}
       >
         {/* ─── Left Panel — Image ─── */}
-        <div className="relative overflow-hidden" style={{ minHeight: "380px" }}>
+        <div 
+          className="relative sticky top-0 self-start overflow-hidden bg-neutral-50" 
+          style={{ height: "100%", minHeight: "500px" }}
+        >
           <QVImage key={qvItem.id} src={qvItem.img} alt={qvItem.title} />
+
 
           {/* Badge tray */}
           <div className="absolute top-3 left-3 flex flex-col gap-1.5 z-10">
@@ -288,7 +293,8 @@ export default function QuickView() {
         </div>
 
         {/* ─── Right Panel — Details ─── */}
-        <div className="flex flex-col p-6 sm:p-8 overflow-y-auto">
+        <div className="flex flex-col p-6 sm:p-10">
+
           {/* Eyebrow */}
           <p
             className="uppercase font-medium mb-1.5"
@@ -391,22 +397,24 @@ export default function QuickView() {
 
           {/* Shop CTA + Wishlist */}
           <div className="flex items-stretch gap-3 mb-5">
-            {itemLink && (
-              <a
-                href={itemLink}
-                target="_blank"
-                rel="noopener noreferrer sponsored"
-                className="flex-1 flex items-center justify-center rounded-lg font-medium transition-transform hover:-translate-y-0.5"
-                style={{
-                  background: "var(--rose)",
-                  color: "white",
-                  fontSize: "0.82rem",
-                  padding: "0.75rem 1.25rem",
-                }}
-              >
-                🛍 Shop on Amazon
-              </a>
-            )}
+                {itemLink && (
+                  <a
+                    href={itemLink}
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    className="flex-1 flex items-center justify-center rounded-lg font-medium transition-all hover:brightness-110 active:scale-[0.98]"
+                    style={{
+                      background: "var(--rose)",
+                      color: "white",
+                      fontSize: "0.85rem",
+                      padding: "0.85rem 1.5rem",
+                      boxShadow: "0 4px 12px rgba(201, 137, 122, 0.25)",
+                    }}
+                  >
+                    🛍 Shop on Amazon
+                  </a>
+                )}
+
             <button
               className="flex items-center justify-center rounded-lg transition-all hover:scale-105"
               style={{
@@ -580,6 +588,12 @@ export default function QuickView() {
             border-radius: 18px 18px 0 0 !important;
             grid-template-columns: 1fr !important;
           }
+          .qv-up > div:first-child {
+            min-height: 380px !important;
+            position: relative !important;
+            sticky: none !important;
+          }
+
         }
       `}</style>
 
