@@ -217,12 +217,13 @@ export default function QuickView() {
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
-          maxWidth: "1000px",
-          width: "calc(100% - 2rem)",
-          maxHeight: "85vh",
+          maxWidth: "1100px",
+          width: "calc(100% - 3rem)",
+          maxHeight: "88vh",
           display: "grid",
-          gridTemplateColumns: "minmax(400px, 1fr) 1.2fr",
+          gridTemplateColumns: "0.9fr 1.1fr",
         }}
+
 
 
         role="dialog"
@@ -232,8 +233,9 @@ export default function QuickView() {
         {/* ─── Left Panel — Image ─── */}
         <div 
           className="relative sticky top-0 self-start overflow-hidden bg-neutral-50 z-10" 
-          style={{ height: "100%", minHeight: "clamp(380px, 50vh, 600px)" }}
+          style={{ height: "100%", minHeight: "clamp(400px, 60vh, 750px)" }}
         >
+
 
           <QVImage key={qvItem.id} src={qvItem.img} alt={qvItem.title} />
 
@@ -296,7 +298,8 @@ export default function QuickView() {
         </div>
 
         {/* ─── Right Panel — Details ─── */}
-        <div className="relative flex flex-col p-6 sm:p-10 z-20">
+        <div className="relative flex flex-col p-8 sm:p-12 z-20">
+
 
 
           {/* Eyebrow */}
