@@ -24,12 +24,12 @@ export default function HomePage() {
     <div>
       {/* Hero Section */}
       <section
-        className="min-h-screen flex items-center"
-        style={{ paddingTop: "62px" }}
+        className="flex items-center"
+        style={{ paddingTop: "62px", minHeight: "100vh" }}
       >
-        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+        <div className="max-w-[1440px] mx-auto px-4 sm:px-8 w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center py-12">
           {/* Left: Text */}
-          <div className="py-12 md:py-0">
+          <div className="py-8 md:py-0">
             <p
               className="text-[0.65rem] tracking-[0.22em] uppercase mb-4 relative pl-8"
               style={{ color: "var(--rose)" }}
@@ -43,7 +43,7 @@ export default function HomePage() {
             <h1
               className="font-serif font-light leading-tight mb-6"
               style={{
-                fontSize: "clamp(2.4rem, 4vw, 3.8rem)",
+                fontSize: "clamp(2.8rem, 5vw, 4.5rem)",
                 color: "var(--charcoal)",
               }}
             >
@@ -95,7 +95,7 @@ export default function HomePage() {
           </div>
 
           {/* Right: Collage */}
-          <div className="hidden md:grid grid-cols-2 gap-3 auto-rows-[220px]">
+          <div className="hidden md:grid grid-cols-2 gap-3">
             {heroImages.length >= 3 ? (
               <>
                 <div
