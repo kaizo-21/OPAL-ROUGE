@@ -202,15 +202,16 @@ export default function QuickView() {
     <>
       {/* ─── Backdrop ─── */}
       <div
-        className="qv-fade fixed inset-0 z-[500]"
+        className="qv-fade fixed inset-0 z-[999]"
         style={{ background: "rgba(0,0,0,0.5)" }}
         onClick={close}
         aria-hidden="true"
       />
 
+
       {/* ─── Modal ─── */}
       <div
-        className="qv-up fixed z-[500] overflow-y-auto rounded-2xl"
+        className="qv-up fixed z-[1000] overflow-y-auto rounded-2xl"
         style={{
           background: "var(--bg)",
           top: "50%",
@@ -223,15 +224,17 @@ export default function QuickView() {
           gridTemplateColumns: "minmax(400px, 1fr) 1.2fr",
         }}
 
+
         role="dialog"
         aria-modal="true"
         aria-label={qvItem.title}
       >
         {/* ─── Left Panel — Image ─── */}
         <div 
-          className="relative sticky top-0 self-start overflow-hidden bg-neutral-50" 
-          style={{ height: "100%", minHeight: "500px" }}
+          className="relative sticky top-0 self-start overflow-hidden bg-neutral-50 z-10" 
+          style={{ height: "100%", minHeight: "clamp(380px, 50vh, 600px)" }}
         >
+
           <QVImage key={qvItem.id} src={qvItem.img} alt={qvItem.title} />
 
 
@@ -293,7 +296,8 @@ export default function QuickView() {
         </div>
 
         {/* ─── Right Panel — Details ─── */}
-        <div className="flex flex-col p-6 sm:p-10">
+        <div className="relative flex flex-col p-6 sm:p-10 z-20">
+
 
           {/* Eyebrow */}
           <p
@@ -589,10 +593,12 @@ export default function QuickView() {
             grid-template-columns: 1fr !important;
           }
           .qv-up > div:first-child {
-            min-height: 380px !important;
+            min-height: 300px !important;
+            height: auto !important;
             position: relative !important;
-            sticky: none !important;
+            top: auto !important;
           }
+
 
         }
       `}</style>
