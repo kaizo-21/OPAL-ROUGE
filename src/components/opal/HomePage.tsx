@@ -205,41 +205,48 @@ export default function HomePage() {
               * Add outfit posts in Admin to show here *
             </div>
           ) : (
-            <div className="masonry-grid">
-              {featuredOutfits.map((item) => (
-                <div
-                  key={item.id}
-                  className="masonry-item card-hover cursor-pointer relative group rounded-xl overflow-hidden"
-                  onClick={() => openItem(item, "outfits")}
-                >
-                  {item.img ? (
-                    <img
-                      src={item.img}
-                      alt={item.title}
-                      className="w-full object-cover"
-                      loading="lazy"
-                    />
-                  ) : (
-                    <div
-                      className="w-full min-h-[200px] flex items-center justify-center text-xl font-serif italic aspect-[3/4]"
-                      style={{
-                        background: "var(--blush)",
-                        color: "var(--rose)",
-                      }}
-                    >
-                      {item.title?.[0] || "*"}
+            <div className="marquee-wrapper">
+              <div 
+                className="marquee-content"
+                style={{
+                  animationDuration: `${featuredOutfits.length * 5}s`
+                }}
+              >
+                {[...featuredOutfits, ...featuredOutfits].map((item, idx) => (
+                  <div
+                    key={`${item.id}-${idx}`}
+                    className="marquee-item card-hover cursor-pointer relative group rounded-xl overflow-hidden aspect-[3/4]"
+                    onClick={() => openItem(item, "outfits")}
+                  >
+                    {item.img ? (
+                      <img
+                        src={item.img}
+                        alt={item.title}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <div
+                        className="w-full h-full flex items-center justify-center text-xl font-serif italic"
+                        style={{
+                          background: "var(--blush)",
+                          color: "var(--rose)",
+                        }}
+                      >
+                        {item.title?.[0] || "*"}
+                      </div>
+                    )}
+                    <div className="absolute inset-0 card-overlay opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
+                      <span className="text-white/80 text-[0.6rem] tracking-[0.15em] uppercase">
+                        {item.cat}
+                      </span>
+                      <span className="text-white font-serif text-[0.85rem]">
+                        {item.title}
+                      </span>
                     </div>
-                  )}
-                  <div className="absolute inset-0 card-overlay opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-end p-4">
-                    <span className="text-white/80 text-[0.6rem] tracking-[0.15em] uppercase">
-                      {item.cat}
-                    </span>
-                    <span className="text-white font-serif text-[0.85rem]">
-                      {item.title}
-                    </span>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           )}
 
