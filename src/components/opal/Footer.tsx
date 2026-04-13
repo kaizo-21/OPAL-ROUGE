@@ -1,20 +1,23 @@
 "use client";
 
 import { useAppStore } from "@/lib/store";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const EXPLORE_LINKS = [
-  { id: "home", label: "Home" },
-  { id: "outfits", label: "Outfit Ideas" },
-  { id: "accessories", label: "Accessories" },
-  { id: "shop", label: "Shop Looks" },
-  { id: "trends", label: "Trend Guides" },
-  { id: "about", label: "About" },
+  { id: "home", label: "Home", href: "/" },
+  { id: "outfits", label: "Outfit Ideas", href: "/outfit-ideas" },
+  { id: "accessories", label: "Accessories", href: "/accessories" },
+  { id: "shop", label: "Shop Looks", href: "/shop-looks" },
+  { id: "trends", label: "Trend Guides", href: "/trend-guides" },
+  { id: "about", label: "About", href: "/about" },
 ];
 
 const DEFAULT_DISC = "Opal & Rouge participates in the Amazon Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to Amazon.in. As an Amazon Associate, we earn from qualifying purchases.";
 
 export default function Footer() {
-  const { setCurrentPage, currentPage, siteSettings } = useAppStore();
+  const { siteSettings } = useAppStore();
+  const pathname = usePathname();
 
   return (
     <footer style={{ background: "#2A2220" }}>
@@ -51,8 +54,8 @@ export default function Footer() {
           <ul className="space-y-2.5">
             {EXPLORE_LINKS.map((link) => (
               <li key={link.id}>
-                <button
-                  onClick={() => setCurrentPage(link.id)}
+                <Link
+                  href={link.href}
                   className="text-[0.78rem] transition-colors hover:text-white"
                   style={{ color: "rgba(255, 255, 255, 0.6)" }}
                   onMouseEnter={(e) =>
@@ -63,7 +66,7 @@ export default function Footer() {
                   }
                 >
                   {link.label}
-                </button>
+                </Link>
               </li>
             ))}
           </ul>
@@ -79,8 +82,8 @@ export default function Footer() {
           </h4>
           <ul className="space-y-2.5">
             <li>
-              <button
-                onClick={() => setCurrentPage("about")}
+              <Link
+                href="/about"
                 className="text-[0.78rem] transition-colors"
                 style={{ color: "rgba(255, 255, 255, 0.6)" }}
                 onMouseEnter={(e) =>
@@ -91,7 +94,7 @@ export default function Footer() {
                 }
               >
                 About
-              </button>
+              </Link>
             </li>
             <li>
               <a
@@ -167,7 +170,7 @@ export default function Footer() {
       </div>
 
       {/* Mini Footer Bar */}
-      {currentPage !== "home" && (
+      {pathname !== "/" && (
         <div
           style={{
             borderTop: "1px solid rgba(201, 137, 122, 0.06)",

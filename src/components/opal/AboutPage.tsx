@@ -2,9 +2,10 @@
 
 import { useAppStore } from "@/lib/store";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import Link from "next/link";
 
 export default function AboutPage() {
-  const { outfits, accessories, trends, wishlist, setCurrentPage } =
+  const { outfits, accessories, trends, wishlist } =
     useAppStore();
 
   const stats = [
@@ -96,8 +97,8 @@ export default function AboutPage() {
 
         {/* CTAs */}
         <div className="flex flex-wrap gap-4">
-          <button
-            onClick={() => setCurrentPage("outfits")}
+          <Link
+            href="/outfit-ideas"
             className="px-6 py-3 text-[0.72rem] tracking-[0.1em] uppercase text-white rounded-full transition-all hover:-translate-y-0.5 inline-flex items-center gap-2"
             style={{ background: "var(--rose)" }}
             onMouseEnter={(e) =>
@@ -109,7 +110,7 @@ export default function AboutPage() {
           >
             Explore the Collection
             <ArrowRight size={14} />
-          </button>
+          </Link>
           <a
             href="https://in.pinterest.com/opalrougeoutfits/"
             target="_blank"

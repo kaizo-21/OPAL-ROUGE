@@ -1,12 +1,15 @@
 "use client";
 import React from "react";
 import { useAppStore } from "../../lib/store";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { OutfitItem, AccessoryItem, ContentType } from "../../lib/types";
 import { ArrowRight } from "lucide-react";
 
 
 export default function HomePage() {
-  const { outfits, accessories, setCurrentPage, setQvItem, siteSettings } = useAppStore();
+  const { outfits, accessories, setQvItem, siteSettings } = useAppStore();
+  const router = useRouter();
 
   const featuredOutfits = outfits
     .filter((o) => o.featured !== "no")
@@ -61,8 +64,8 @@ export default function HomePage() {
               curated for you.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button
-                onClick={() => setCurrentPage("shop")}
+              <Link
+                href="/shop-looks"
                 className="px-6 py-3 text-[0.72rem] tracking-[0.1em] uppercase text-white rounded-full transition-all hover:-translate-y-0.5"
                 style={{ background: "var(--charcoal)" }}
                 onMouseEnter={(e) =>
@@ -73,9 +76,9 @@ export default function HomePage() {
                 }
               >
                 Shop the Look
-              </button>
-              <button
-                onClick={() => setCurrentPage("outfits")}
+              </Link>
+              <Link
+                href="/outfit-ideas"
                 className="px-6 py-3 text-[0.72rem] tracking-[0.1em] uppercase rounded-full transition-all hover:-translate-y-0.5"
                 style={{
                   border: "1px solid rgba(201, 137, 122, 0.5)",
@@ -91,7 +94,7 @@ export default function HomePage() {
                 }}
               >
                 Explore Outfits
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -241,8 +244,8 @@ export default function HomePage() {
           )}
 
           <div className="text-center mt-10">
-            <button
-              onClick={() => setCurrentPage("outfits")}
+            <Link
+              href="/outfit-ideas"
               className="px-6 py-3 text-[0.72rem] tracking-[0.1em] uppercase rounded-full transition-all hover:-translate-y-0.5 inline-flex items-center gap-2"
               style={{
                 border: "1px solid rgba(201, 137, 122, 0.5)",
@@ -259,7 +262,7 @@ export default function HomePage() {
             >
               View All Outfits
               <ArrowRight size={14} />
-            </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -354,8 +357,8 @@ export default function HomePage() {
           )}
 
           <div className="text-center mt-10">
-            <button
-              onClick={() => setCurrentPage("accessories")}
+            <Link
+              href="/accessories"
               className="px-6 py-3 text-[0.72rem] tracking-[0.1em] uppercase rounded-full transition-all hover:-translate-y-0.5 inline-flex items-center gap-2"
               style={{
                 border: "1px solid rgba(201, 137, 122, 0.5)",
@@ -372,7 +375,7 @@ export default function HomePage() {
             >
               View All Accessories
               <ArrowRight size={14} />
-            </button>
+            </Link>
           </div>
         </div>
       </section>

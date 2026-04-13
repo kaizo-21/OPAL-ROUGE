@@ -3,6 +3,7 @@
 import { ArrowLeft, ShoppingBag } from "lucide-react";
 import { useAppStore } from "@/lib/store";
 import { ContentType } from "@/lib/types";
+import { useRouter } from "next/navigation";
 
 /** Parse the `products` string into { name, link } pairs. */
 function parseProducts(raw: string): { name: string; link: string }[] {
@@ -22,8 +23,8 @@ const DEFAULT_DISC = "Some links on this page are affiliate links. Opal & Rouge 
 export default function BlogArticle() {
   const blogItem = useAppStore((s) => s.blogItem);
   const setBlogItem = useAppStore((s) => s.setBlogItem);
-  const setCurrentPage = useAppStore((s) => s.setCurrentPage);
   const siteSettings = useAppStore((s) => s.siteSettings);
+  const router = useRouter();
 
   if (!blogItem) return null;
 
@@ -55,7 +56,7 @@ export default function BlogArticle() {
   // Back handler
   const handleBack = () => {
     setBlogItem(null);
-    setCurrentPage("outfits");
+    router.push("/outfit-ideas");
   };
 
   return (

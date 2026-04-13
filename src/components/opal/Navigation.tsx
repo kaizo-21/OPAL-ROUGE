@@ -3,20 +3,20 @@
 import { useAppStore } from "@/lib/store";
 import { Heart, Moon, Sun, ShoppingBag } from "lucide-react";
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const NAV_ITEMS = [
-  { id: "home", label: "Home" },
-  { id: "outfits", label: "Outfit Ideas" },
-  { id: "accessories", label: "Accessories" },
-  { id: "shop", label: "Shop Looks" },
-  { id: "trends", label: "Trend Guides" },
-  { id: "about", label: "About" },
+  { id: "home", label: "Home", href: "/" },
+  { id: "outfits", label: "Outfit Ideas", href: "/outfit-ideas" },
+  { id: "accessories", label: "Accessories", href: "/accessories" },
+  { id: "shop", label: "Shop Looks", href: "/shop-looks" },
+  { id: "trends", label: "Trend Guides", href: "/trend-guides" },
+  { id: "about", label: "About", href: "/about" },
 ];
 
 export default function Navigation() {
   const {
-    currentPage,
-    setCurrentPage,
     theme,
     setTheme,
     wishlist,
@@ -24,6 +24,7 @@ export default function Navigation() {
     isMobileMenuOpen,
     setIsMobileMenuOpen,
   } = useAppStore();
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -73,30 +74,33 @@ export default function Navigation() {
       >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 flex items-center justify-between h-[62px]">
           {/* Logo */}
-          <button
-            onClick={() => setCurrentPage("home")}
+          <Link
+            href="/"
             className="font-serif text-[1.42rem] italic tracking-wide hover:opacity-80 transition-opacity"
             style={{ color: "var(--rose)" }}
           >
             Opal & Rouge
-          </button>
+          </Link>
 
           {/* Desktop Nav Links */}
           <div className="hidden md:flex items-center gap-6">
-            {NAV_ITEMS.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => setCurrentPage(item.id)}
-                className={`nav-link text-[0.72rem] tracking-[0.1em] uppercase font-light transition-colors ${
-                  currentPage === item.id ? "active" : ""
-                }`}
-                style={{
-                  color: currentPage === item.id ? "var(--rose)" : "var(--text)",
-                }}
-              >
-                {item.label}
-              </button>
-            ))}
+            {NAV_ITEMS.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.id}
+                  href={item.href}
+                  className={`nav-link text-[0.72rem] tracking-[0.1em] uppercase font-light transition-colors ${
+                    isActive ? "active" : ""
+                  }`}
+                  style={{
+                    color: isActive ? "var(--rose)" : "var(--text)",
+                  }}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Right side icons */}
@@ -137,14 +141,14 @@ export default function Navigation() {
             </button>
 
             {/* Shop CTA (desktop) */}
-            <button
-              onClick={() => setCurrentPage("shop")}
+            <Link
+              href="/shop-looks"
               className="hidden md:flex items-center gap-1.5 text-[0.68rem] tracking-[0.1em] uppercase px-4 py-2 rounded-full text-white transition-all hover:-translate-y-0.5"
               style={{ background: "var(--rose)" }}
             >
               <ShoppingBag size={14} />
               Shop the Look
-            </button>
+            </Link>
 
             {/* Hamburger (mobile) */}
             <button
@@ -187,22 +191,23 @@ export default function Navigation() {
             borderBottom: "1px solid rgba(201, 137, 122, 0.08)",
           }}
         >
-          {NAV_ITEMS.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => {
-                setCurrentPage(item.id);
-                setIsMobileMenuOpen(false);
-              }}
-              className="w-full text-left px-6 py-4 text-[0.78rem] tracking-[0.08em] uppercase font-light transition-colors hover:bg-[var(--blush)]"
-              style={{
-                color: currentPage === item.id ? "var(--rose)" : "var(--text)",
-                borderBottom: "1px solid rgba(201, 137, 122, 0.08)",
-              }}
-            >
-              {item.label}
-            </button>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.id}
+                href={item.href}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full text-left px-6 py-4 text-[0.78rem] tracking-[0.08em] uppercase font-light transition-colors hover:bg-[var(--blush)]"
+                style={{
+                  color: isActive ? "var(--rose)" : "var(--text)",
+                  borderBottom: "1px solid rgba(201, 137, 122, 0.08)",
+                }}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </div>
       )}
     </>
